@@ -30,23 +30,30 @@
 }
 
 .row{
-  margin 10px;
+  margin: 10px;
 }
 
 
 .col-sm-2{
-    background-color: rgb(204, 228, 243,0.2);
-    font-size:120% ;
-    border: solid;
-    border-color: rgb(85, 31, 100);
-    border-radius: 10px;
-    border-width: 5px;
-    overflow-y: scroll;
-    margin: 10px;
+  background-color: rgb(204, 228, 243,0.2);
+  font-size:120% ;
+  border: solid;
+  border-color: rgb(85, 31, 100);
+  border-radius: 10px;
+  border-width: 5px;
+  overflow-y: scroll;
+  margin: 10px;
     
 }
 
+pre{
+  font-size: 18px !important;
+}
 .col-sm-9{
+  /* s */
   margin: 10px;
+  font-size: large;
+  /* height: px;
+  width: px; */
+  
   }
-
