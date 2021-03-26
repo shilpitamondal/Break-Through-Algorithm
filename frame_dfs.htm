@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Depth-first search</h1>
+        <pre>
+            Depth first search (DFS) algorithm starts with the initial node of the graph G, and then goes to deeper and deeper until we find the goal node or the node which has no children. The algorithm, then backtracks from the dead end towards the most recent node that is yet to be completely unexplored.
+
+The data structure which is being used in DFS is stack. The process is similar to BFS algorithm. In DFS, the edges that leads to an unvisited node are called discovery edges while the edges that leads to an already visited node are called block edges.
+
+<h3>Algorithm</h3>
+
+Step 1: SET STATUS = 1 (ready state) for each node in G
+Step 2: Push the starting node A on the stack and set its STATUS = 2 (waiting state)
+Step 3: Repeat Steps 4 and 5 until STACK is empty
+Step 4: Pop the top node N. Process it and set its STATUS = 3 (processed state)
+Step 5: Push on the stack all the neighbours of N that are in the ready state (whose STATUS = 1) and set their
+STATUS = 2 (waiting state)
+[END OF LOOP]
+Step 6: EXIT
+        </pre>
+        <img src="images/dfs.png">
+        <pre>
+            <h3>Depth First Search Algorithm</h3>
+A standard DFS implementation puts each vertex of the graph into one of two categories:
+
+1.Visited
+2.Not Visited
+The purpose of the algorithm is to mark each vertex as visited while avoiding cycles.
+
+The DFS algorithm works as follows:
+
+1.Start by putting any one of the graph's vertices on top of a stack.
+2.Take the top item of the stack and add it to the visited list.
+3.Create a list of that vertex's adjacent nodes. Add the ones which aren't in the visited list to the top of the stack.
+4.Keep repeating steps 2 and 3 until the stack is empty.
+
+            <h3>Corresponding code</h3>
+            // DFS algorithm in C
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct node {
+  int vertex;
+  struct node* next;
+};
+
+struct node* createNode(int v);
+
+struct Graph {
+  int numVertices;
+  int* visited;
+
+  // We need int** to store a two dimensional array.
+  // Similary, we need struct node** to store an array of Linked lists
+  struct node** adjLists;
+};
+
+// DFS algo
+void DFS(struct Graph* graph, int vertex) {
+  struct node* adjList = graph->adjLists[vertex];
+  struct node* temp = adjList;
+
+  graph->visited[vertex] = 1;
+  printf("Visited %d \n", vertex);
+
+  while (temp != NULL) {
+    int connectedVertex = temp->vertex;
+
+    if (graph->visited[connectedVertex] == 0) {
+      DFS(graph, connectedVertex);
+    }
+    temp = temp->next;
+  }
+}
+
+// Create a node
+struct node* createNode(int v) {
+  struct node* newNode = malloc(sizeof(struct node));
+  newNode->vertex = v;
+  newNode->next = NULL;
+  return newNode;
+}
+
+// Create graph
+struct Graph* createGraph(int vertices) {
+  struct Graph* graph = malloc(sizeof(struct Graph));
+  graph->numVertices = vertices;
+
+  graph->adjLists = malloc(vertices * sizeof(struct node*));
+
+  graph->visited = malloc(vertices * sizeof(int));
+
+  int i;
+  for (i = 0; i < vertices; i++) {
+    graph->adjLists[i] = NULL;
+    graph->visited[i] = 0;
+  }
+  return graph;
+}
+
+// Add edge
+void addEdge(struct Graph* graph, int src, int dest) {
+  // Add edge from src to dest
+  struct node* newNode = createNode(dest);
+  newNode->next = graph->adjLists[src];
+  graph->adjLists[src] = newNode;
+
+  // Add edge from dest to src
+  newNode = createNode(src);
+  newNode->next = graph->adjLists[dest];
+  graph->adjLists[dest] = newNode;
+}
+
+// Print the graph
+void printGraph(struct Graph* graph) {
+  int v;
+  for (v = 0; v < graph->numVertices; v++) {
+    struct node* temp = graph->adjLists[v];
+    printf("\n Adjacency list of vertex %d\n ", v);
+    while (temp) {
+      printf("%d -> ", temp->vertex);
+      temp = temp->next;
+    }
+    printf("\n");
+  }
+}
+
+int main() {
+  struct Graph* graph = createGraph(4);
+  addEdge(graph, 0, 1);
+  addEdge(graph, 0, 2);
+  addEdge(graph, 1, 2);
+  addEdge(graph, 2, 3);
+
+  printGraph(graph);
+
+  DFS(graph, 2);
+
+  return 0;
+}
+<h3> Complexity of Depth First Search </h3>
+The time complexity of the DFS algorithm is represented in the form of O(V + E), where V is the number of nodes and E is the number of edges.
+
+The space complexity of the algorithm is O(V).
+
+
+        </pre>
+    </body>
+
+</html>

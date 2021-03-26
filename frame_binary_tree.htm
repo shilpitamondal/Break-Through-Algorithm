@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Binary Tree Algorithm</h1>
+        <pre>
+            Tree represents the nodes connected by edges. We will discuss binary tree or binary search tree specifically.
+
+Binary Tree is a special datastructure used for data storage purposes. A binary tree has a special condition that each node can have a maximum of 
+two children. A binary tree has the benefits of both an ordered array and a linked list as search is as quick as in a sorted array and insertion 
+or deletion operation are as fast as in linked list.
+
+<h4> Algorithm</h4>
+If root is NULL 
+   then create root node
+return
+
+If root exists then
+   compare the data with node.data
+   
+   while until insertion position is located
+
+      If data is greater than node.data
+         goto right subtree
+      else
+         goto left subtree
+
+   endwhile 
+   
+   insert data
+	
+end If      
+
+        </pre>
+        <img src="images/binary_tree.jpg">
+        <pre>
+            <h3>Corresponding code</h3>
+
+            void insert(int data) {
+                struct node *tempNode = (struct node*) malloc(sizeof(struct node));
+                struct node *current;
+                struct node *parent;
+             
+                tempNode->data = data;
+                tempNode->leftChild = NULL;
+                tempNode->rightChild = NULL;
+             
+                //if tree is empty, create root node
+                if(root == NULL) {
+                   root = tempNode;
+                } else {
+                   current = root;
+                   parent  = NULL;
+             
+                   while(1) {                
+                      parent = current;
+             
+                      //go to left of the tree
+                      if(data < parent->data) {
+                         current = current->leftChild;                
+                         
+                         //insert to the left
+                         if(current == NULL) {
+                            parent->leftChild = tempNode;
+                            return;
+                         }
+                      }
+                         
+                      //go to right of the tree
+                      else {
+                         current = current->rightChild;
+                         
+                         //insert to the right
+                         if(current == NULL) {
+                            parent->rightChild = tempNode;
+                            return;
+                         }
+                      }
+                   }            
+                }
+             }
+                  
+                </pre>
+    </body>
+
+</html>

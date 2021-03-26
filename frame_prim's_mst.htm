@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Prim's Algorithm</h1>
+        <pre>
+            Prim's algorithm is a minimum spanning tree algorithm that takes a graph as input and finds the subset of the edges of that graph which
+
+i)form a tree that includes every vertex
+ii)has the minimum sum of weights among all the trees that can be formed from the graph
+
+        </pre>
+        <pre><h3>Prim's Algorithm pseudocode</h3>
+            The pseudocode for prim's algorithm shows how we create two sets of vertices U and V-U. U contains the list of vertices that have been 
+            visited and V-U the list of vertices that haven't. One by one, we move vertices from set V-U to set U by connecting the least weight edge.
+            
+            T = ∅;
+            U = { 1 };
+            while (U ≠ V)
+                let (u, v) be the lowest cost edge such that u ∈ U and v ∈ V - U;
+                T = T ∪ {(u, v)}
+                U = U ∪ {v}
+            </pre>
+        <pre>
+            <h3>Corresponding code</h3>
+            // Prim's Algorithm in C
+
+#include<stdio.h>
+#include<stdbool.h> 
+
+#define INF 9999999
+
+// number of vertices in graph
+#define V 5
+
+// create a 2d array of size 5x5
+//for adjacency matrix to represent graph
+int G[V][V] = {
+  {0, 9, 75, 0, 0},
+  {9, 0, 95, 19, 42},
+  {75, 95, 0, 51, 66},
+  {0, 19, 51, 0, 31},
+  {0, 42, 66, 31, 0}};
+
+int main() {
+  int no_edge;  // number of edge
+
+  // create a array to track selected vertex
+  // selected will become true otherwise false
+  int selected[V];
+
+  // set selected false initially
+  memset(selected, false, sizeof(selected));
+  
+  // set number of edge to 0
+  no_edge = 0;
+
+  // the number of egde in minimum spanning tree will be
+  // always less than (V -1), where V is number of vertices in
+  //graph
+
+  // choose 0th vertex and make it true
+  selected[0] = true;
+
+  int x;  //  row number
+  int y;  //  col number
+
+  // print for edge and weight
+  printf("Edge : Weight\n");
+
+  while (no_edge < V - 1) {
+    //For every vertex in the set S, find the all adjacent vertices
+    // , calculate the distance from the vertex selected at step 1.
+    // if the vertex is already in the set S, discard it otherwise
+    //choose another vertex nearest to selected vertex  at step 1.
+
+    int min = INF;
+    x = 0;
+    y = 0;
+
+    for (int i = 0; i < V; i++) {
+      if (selected[i]) {
+        for (int j = 0; j < V; j++) {
+          if (!selected[j] && G[i][j]) {  // not in selected and there is an edge
+            if (min > G[i][j]) {
+              min = G[i][j];
+              x = i;
+              y = j;
+            }
+          }
+        }
+      }
+    }
+    printf("%d - %d : %d\n", x, y, G[x][y]);
+    selected[y] = true;
+    no_edge++;
+  }
+
+  return 0;
+}// Prim's Algorithm in C
+
+#include<stdio.h>
+#include<stdbool.h> 
+
+#define INF 9999999
+
+// number of vertices in graph
+#define V 5
+
+// create a 2d array of size 5x5
+//for adjacency matrix to represent graph
+int G[V][V] = {
+  {0, 9, 75, 0, 0},
+  {9, 0, 95, 19, 42},
+  {75, 95, 0, 51, 66},
+  {0, 19, 51, 0, 31},
+  {0, 42, 66, 31, 0}};
+
+int main() {
+  int no_edge;  // number of edge
+
+  // create a array to track selected vertex
+  // selected will become true otherwise false
+  int selected[V];
+
+  // set selected false initially
+  memset(selected, false, sizeof(selected));
+  
+  // set number of edge to 0
+  no_edge = 0;
+
+  // the number of egde in minimum spanning tree will be
+  // always less than (V -1), where V is number of vertices in
+  //graph
+
+  // choose 0th vertex and make it true
+  selected[0] = true;
+
+  int x;  //  row number
+  int y;  //  col number
+
+  // print for edge and weight
+  printf("Edge : Weight\n");
+
+  while (no_edge < V - 1) {
+    //For every vertex in the set S, find the all adjacent vertices
+    // , calculate the distance from the vertex selected at step 1.
+    // if the vertex is already in the set S, discard it otherwise
+    //choose another vertex nearest to selected vertex  at step 1.
+
+    int min = INF;
+    x = 0;
+    y = 0;
+
+    for (int i = 0; i < V; i++) {
+      if (selected[i]) {
+        for (int j = 0; j < V; j++) {
+          if (!selected[j] && G[i][j]) {  // not in selected and there is an edge
+            if (min > G[i][j]) {
+              min = G[i][j];
+              x = i;
+              y = j;
+            }
+          }
+        }
+      }
+    }
+    printf("%d - %d : %d\n", x, y, G[x][y]);
+    selected[y] = true;
+    no_edge++;
+  }
+
+  return 0;
+}
+            <h3>complexity:-</h3>
+            The time complexity of Prim's algorithm is O(E log V).
+</pre>
+    </body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>Expotential Search</h1>
+        <pre>
+            The name of this searching algorithm may be misleading as it works in O(Log n) time. The name comes from the way it searches an element.
+<h3>
+Given a sorted array, and an element x to be 
+searched, find position of x in the array.
+
+Input:  arr[] = {10, 20, 40, 45, 55}
+        x = 45
+Output: Element found at index 3
+
+Input:  arr[] = {10, 15, 25, 45, 55}
+        x = 15
+Output: Element found at index 1
+
+<h3>Algorithm:</h3>
+Exponential search involves two basic steps:
+Find range where element is present
+Execute Binary Search algorithm in above found range.
+** How to find the range where element may be present? **
+
+The idea is to start with sub-list of size 1. Ccompare the last element of the list with the target element, then try size 2, then 4 and 
+so on until last element of the list is not greater.
+Once we find a location loc (after repeated doubling of list size), we know that the element must be present between loc/2 and loc.
+</pre>
+        <img src="images/expotential.png">
+
+<pre>
+    <h3>Corresponding code</h3>
+    #include <stdio.h>
+    int 
+    min(int a, int b)
+    {
+        return (a < b ? a : b);
+    }
+    int 
+    binarySearch(int arr[], int l, int r, int x)
+    {
+        if (r >= l) {
+            int mid = l + (r - l) / 2; 
+            if (arr[mid] == x)
+                return (mid); 
+            if (arr[mid] > x)
+                return (binarySearch(arr, l, mid - 1, x));
+             return (binarySearch(arr, mid + 1, r, x));
+        }
+        return (-1);
+    }
+    int 
+    exponentialSearch(int arr[], int n, int x)
+    {
+        if (arr[0] == x)
+            return (0);
+        int i = 1;
+        while (i < n && arr[i] <= x)
+            i = i*2;
+        return (binarySearch(arr, i / 2, min(i, n), x));
+    }
+    int 
+    main()
+    {
+       int n;
+       printf("Enter size of Array \n");
+       scanf("%d", &n);
+       int arr[n], i;
+       printf("Enter %d integers in ascending order \n", n);
+       for(i = 0; i < n; i++)
+            scanf("%d", &arr[i]);
+       int x;
+       printf("Enter integer to be searched \n");
+       scanf("%d", &x);
+       int result = exponentialSearch(arr, n, x);
+       if (result == -1)
+            printf("%d is not present in array \n", x);
+       else
+            printf("%d is present at index %d \n", x, result);
+       return (0);
+    }
+
+   <h3> Complexity: </h3>
+Worst case time complexity: O(log i) where i is the index of the element being searched.
+Average case time complexity: O(log i)
+Best case time complexity: O(1)
+Space complexity: O(1)
+</pre>   
+    </body>
+</html>
