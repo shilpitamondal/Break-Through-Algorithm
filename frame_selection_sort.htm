@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body class="framebody">
         <h1>Selection Sort</h1>
         <pre>
 
-The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting
- it at the beginning. The algorithm maintains two subarrays in a given array.
+The selection sort algorithm sorts an array by repeatedly finding the minimum
+element (considering ascending order) from unsorted part and putting it at the 
+beginning. The algorithm maintains two subarrays in a given array.
 
 1) The subarray which is already sorted.
 2) Remaining subarray which is unsorted.
 
-In every iteration of selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the sorted subarray.
+In every iteration of selection sort, the minimum element (considering ascending 
+order) from the unsorted subarray is picked and moved to the sorted subarray.
 
 <h4>Examples:</h4>
 Following example explains the above steps:
@@ -40,7 +42,7 @@ arr[] = 64 25 12 22 11
 
 <h3>program for implementation of selection sort</h3>
 
-#include <stdio.h>
+#include &lt;stdio.h&gt;
   
 void swap(int *xp, int *yp)
 {
@@ -54,16 +56,16 @@ void selectionSort(int arr[], int n)
     int i, j, min_idx;
   
     // One by one move boundary of unsorted subarray
-    for (i = 0; i < n-1; i++)
+    for (i = 0; i &lt; n-1; i++)
     {
         // Find the minimum element in unsorted array
         min_idx = i;
-        for (j = i+1; j < n; j++)
-          if (arr[j] < arr[min_idx])
+        for (j = i+1; j &lt; n; j++)
+          if (arr[j] &lt; arr[min_idx])
             min_idx = j;
   
         // Swap the found minimum element with the first element
-        swap(&arr[min_idx], &arr[i]);
+        swap(&amp;arr[min_idx], &amp;arr[i]);
     }
 }
   
@@ -71,7 +73,7 @@ void selectionSort(int arr[], int n)
 void printArray(int arr[], int size)
 {
     int i;
-    for (i=0; i < size; i++)
+    for (i=0; i &lt; size; i++)
         printf("%d ", arr[i]);
     printf("\n");
 }
@@ -91,10 +93,11 @@ Sorted array:
 11 12 22 25 64
 
 <h3>Complexity</h3>
-Time Complexity: O(n2) as there are two nested loops.
+Time Complexity: O(n<sup>2</sup>) as there are two nested loops.
 
 Auxiliary Space: O(1)
-The good thing about selection sort is it never makes more than O(n) swaps and can be useful when memory write is a costly operation.
+The good thing about selection sort is it never makes more than O(n) 
+swaps and can be useful when memory write is a costly operation.
 </pre>
     </body>
 </html>
