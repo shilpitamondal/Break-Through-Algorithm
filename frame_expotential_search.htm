@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body class="framebody">
         <h1>Expotential Search</h1>
         <pre>
-            The name of this searching algorithm may be misleading as it works in O(Log n) time. The name comes from the way it searches an element.
+The name of this searching algorithm may be misleading as it works in O(Log n) time. 
+The name comes from the way it searches an element.
 <h3>
 Given a sorted array, and an element x to be 
 searched, find position of x in the array.
@@ -25,69 +26,96 @@ Find range where element is present
 Execute Binary Search algorithm in above found range.
 ** How to find the range where element may be present? **
 
-The idea is to start with sub-list of size 1. Ccompare the last element of the list with the target element, then try size 2, then 4 and 
+The idea is to start with sub-list of size 1. Ccompare the last element of the list 
+with the target element, then try size 2, then 4 and 
 so on until last element of the list is not greater.
-Once we find a location loc (after repeated doubling of list size), we know that the element must be present between loc/2 and loc.
+Once we find a location loc (after repeated doubling of list size), we know that the 
+element must be present between loc/2 and loc.
 </pre>
-        <img src="images/expotential.png">
+        
 
 <pre>
     <h3>Corresponding code</h3>
-    #include <stdio.h>
-    int 
-    min(int a, int b)
-    {
-        return (a < b ? a : b);
-    }
-    int 
-    binarySearch(int arr[], int l, int r, int x)
-    {
-        if (r >= l) {
-            int mid = l + (r - l) / 2; 
-            if (arr[mid] == x)
-                return (mid); 
-            if (arr[mid] > x)
-                return (binarySearch(arr, l, mid - 1, x));
-             return (binarySearch(arr, mid + 1, r, x));
-        }
-        return (-1);
-    }
-    int 
-    exponentialSearch(int arr[], int n, int x)
-    {
-        if (arr[0] == x)
-            return (0);
-        int i = 1;
-        while (i < n && arr[i] <= x)
-            i = i*2;
-        return (binarySearch(arr, i / 2, min(i, n), x));
-    }
-    int 
-    main()
-    {
-       int n;
-       printf("Enter size of Array \n");
-       scanf("%d", &n);
-       int arr[n], i;
-       printf("Enter %d integers in ascending order \n", n);
-       for(i = 0; i < n; i++)
-            scanf("%d", &arr[i]);
-       int x;
-       printf("Enter integer to be searched \n");
-       scanf("%d", &x);
-       int result = exponentialSearch(arr, n, x);
-       if (result == -1)
-            printf("%d is not present in array \n", x);
-       else
-            printf("%d is present at index %d \n", x, result);
-       return (0);
-    }
+    #include &lt;stdio.h&gt;
+ 
+      // Utility function to find a minimum of two numbers
+      int min(int x, int y) {
+          return (x &lt; y) ? x : y;
+      }
+       
+      // Binary search algorithm to return the position of
+      // key `x` in subarray `arr[low…high]`
+      int BinarySearch(int arr[], int low, int high, int x)
+      {
+          // Base condition (search space is exhausted)
+          if (low > high) {
+              return -1;
+          }
+       
+          // find the mid-value in the search space and
+          // compares it with the key
+       
+          int mid = (low + high)/2;        // overflow can happen
+          // int mid = low + (high - low)/2;
+       
+          // Base condition (a key is found)
+          if (x == arr[mid]) {
+              return mid;
+          }
+       
+          // discard all elements in the right search space,
+          // including the middle element
+          else if (x &lt; arr[mid]) {
+              return BinarySearch(arr, low, mid - 1, x);
+          }
+       
+          // discard all elements in the left search space,
+          // including the middle element
+          else {
+              return BinarySearch(arr, mid + 1, high, x);
+          }
+      }
+       
+      // Returns the position of key `x` in a given array `A` of length `n`
+      int ExponentialSearch(int arr[], int n, int x)
+      {
+          int bound = 1;
+       
+          // find the range in which key `x` would reside
+          while (bound &lt; n &amp;&amp; arr[bound] &lt; x) {
+              bound *= 2;        // calculate the next power of 2
+          }
+       
+          // call binary search on `arr[bound/2 … min(bound, n)]`
+          return BinarySearch(arr, bound/2, min(bound, n), x);
+      }
+       
+      // Exponential search algorithm
+      int main(void)
+      {
+          int arr[] = {2, 5, 6, 8, 9, 10};
+          int target = 9;
+       
+          int n = sizeof(arr)/sizeof(arr[0]);
+          int index = ExponentialSearch(arr, n, target);
+       
+          if (index != -1) {
+              printf("Element found at index %d", index);
+          }
+          else {
+              printf("Element not found in the array");
+          }
+       
+          return 0;
+      }
+
+      <h3>OUTPUT</h3>
+       Element found at index 4
 
    <h3> Complexity: </h3>
-Worst case time complexity: O(log i) where i is the index of the element being searched.
-Average case time complexity: O(log i)
-Best case time complexity: O(1)
-Space complexity: O(1)
+Time Complexity : O(Log n) 
+Auxiliary Space : The above implementation of Binary Search is recursive and 
+requires O(Log n) space. With iterative Binary Search, we need only O(1) space.
 </pre>   
     </body>
 </html>
