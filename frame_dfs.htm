@@ -1,47 +1,87 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+       <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body class="framebody">
         <h1>Depth-first search</h1>
         <pre>
-            Depth first search (DFS) algorithm starts with the initial node of the graph G, and then goes to deeper and deeper until we find the goal node or the node which has no children. The algorithm, then backtracks from the dead end towards the most recent node that is yet to be completely unexplored.
+Depth first search (DFS) algorithm starts with the initial node of the graph G, 
+and then goes to deeper and deeper until we find the goal node or the node which 
+has no children. The algorithm, then backtracks from the dead end towards the most 
+recent node that is yet to be completely unexplored.
 
-The data structure which is being used in DFS is stack. The process is similar to BFS algorithm. In DFS, the edges that leads to an unvisited node are called discovery edges while the edges that leads to an already visited node are called block edges.
-
-<h3>Algorithm</h3>
-
-Step 1: SET STATUS = 1 (ready state) for each node in G
-Step 2: Push the starting node A on the stack and set its STATUS = 2 (waiting state)
-Step 3: Repeat Steps 4 and 5 until STACK is empty
-Step 4: Pop the top node N. Process it and set its STATUS = 3 (processed state)
-Step 5: Push on the stack all the neighbours of N that are in the ready state (whose STATUS = 1) and set their
-STATUS = 2 (waiting state)
-[END OF LOOP]
-Step 6: EXIT
-        </pre>
-        <img src="images/dfs.png">
-        <pre>
-            <h3>Depth First Search Algorithm</h3>
+<b>Algorithm:</b>
 A standard DFS implementation puts each vertex of the graph into one of two categories:
+ 1.Visited  2.Not Visited
 
-1.Visited
-2.Not Visited
 The purpose of the algorithm is to mark each vertex as visited while avoiding cycles.
 
 The DFS algorithm works as follows:
 
 1.Start by putting any one of the graph's vertices on top of a stack.
 2.Take the top item of the stack and add it to the visited list.
-3.Create a list of that vertex's adjacent nodes. Add the ones which aren't in the visited list to the top of the stack.
+3.Create a list of that vertex's adjacent nodes. Add the ones which aren't in the visited 
+list to the top of the stack.
 4.Keep repeating steps 2 and 3 until the stack is empty.
 
-            <h3>Corresponding code</h3>
-            // DFS algorithm in C
+<b>Example:</b>
+Consider the graph G along with its adjacency list, given in the figure below. Calculate 
+the order to print all the nodes of the graph starting from node H, by using depth first 
+search (DFS) algorithm.
+            
+<img src="images/depth-first-search-algorithm-example.png">
 
-#include <stdio.h>
-#include <stdlib.h>
+Push H onto the stack
+  STACK : H   
+
+POP the top element of the stack i.e. H, print it and push all the neighbours of H onto the 
+stack that are is ready state.
+  Print H   
+  STACK : A 
+
+Pop the top element of the stack i.e. A, print it and push all the neighbours of A onto the 
+stack that are in ready state.
+  Print A  
+  Stack : B, D  
+
+Pop the top element of the stack i.e. D, print it and push all the neighbours of D onto the 
+stack that are in ready state.
+  Print D   
+  Stack : B, F   
+
+Pop the top element of the stack i.e. F, print it and push all the neighbours of F onto the 
+stack that are in ready state.
+  Print F  
+  Stack : B  
+
+Pop the top of the stack i.e. B and push all the neighbours
+  Print B   
+  Stack : C   
+
+Pop the top of the stack i.e. C and push all the neighbours.
+  Print C   
+  Stack : E, G   
+
+Pop the top of the stack i.e. G and push all its neighbours.
+  Print G  
+  Stack : E  
+
+Pop the top of the stack i.e. E and push all its neighbours.
+  Print E  
+  Stack :  
+
+Hence, the stack now becomes empty and all the nodes of the graph have been traversed.
+
+The printing sequence of the graph will be :
+
+  H → A → D → F → B → C → G → E  
+
+<b>Corresponding Code:</b>
+// DFS algorithm in C
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
 struct node {
   int vertex;
@@ -142,8 +182,32 @@ int main() {
 
   return 0;
 }
-<h3> Complexity of Depth First Search </h3>
-The time complexity of the DFS algorithm is represented in the form of O(V + E), where V is the number of nodes and E is the number of edges.
+
+<b>Output:</b>
+Adjacency list of vertex 0
+2 -> 1 -> 
+
+Adjacency list of vertex 1
+2 -> 0 -> 
+
+Adjacency list of vertex 2
+3 -> 1 -> 0 -> 
+
+Adjacency list of vertex 3
+2 -> 
+
+Visited 2 
+
+Visited 3 
+
+Visited 1 
+
+Visited 0 
+
+
+<h3>Complexity:</h3>
+The time complexity of the DFS algorithm is represented in the form of O(V + E), 
+where V is the number of nodes and E is the number of edges.
 
 The space complexity of the algorithm is O(V).
 

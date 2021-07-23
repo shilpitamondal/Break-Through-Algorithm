@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="framebody">
+        <h1>Stack Data Structure</h1>
+        <pre>
+Stack is a linear data structure which follows a particular order in which 
+the operations are performed. The order may be LIFO(Last In First Out) or 
+FILO(First In Last Out).
+
+<b>Mainly the following three basic operations are performed in the stack:</b>
+1.Push: Adds an item in the stack. If the stack is full, then it is said to be 
+an Overflow condition.
+2.Pop: Removes an item from the stack. The items are popped in the reversed 
+order in which they are pushed. If the stack is empty, then it is said to be 
+an Underflow condition.
+3.Peek or Top: Returns top element of stack.
+4.isEmpty: Returns true if stack is empty, else false.
+
+<img src="images/stack.png">
+
+<b>Application:</b>
+1.Stacks can be used for expression evaluation.
+2.Stacks can be used to check parenthesis matching in an expression.
+3.Stacks can be used for Conversion from one form of expression to another.
+4.Stacks can be used for Memory Management.
+5.Stack data structures are used in backtracking problems.
+
+<b>Implementation: </b>
+There are two ways to implement a stack: 
+
+1.Using array
+2.Using linked list
+
+<b>Corresponding Code:</b>
+#include &lt;stdio.h&gt;   
+int stack[100],i,j,choice=0,n,top=-1;  
+void push();  
+void pop();  
+void show();  
+void main ()  
+{  
+      
+    printf("Enter the number of elements in the stack ");   
+    scanf("%d",&n);  
+    printf("*********Stack operations using array*********\n");  
+  
+printf("----------------------------------------------\n");  
+    while(choice != 4)  
+    {  
+        printf("Choose one from the below options...\n");  
+        printf("\n1.Push\n2.Pop\n3.Show\n4.Exit");  
+        printf("\n Enter your choice \n");        
+        scanf("%d",&choice);  
+        switch(choice)  
+        {  
+            case 1:  
+            {   
+                push();  
+                break;  
+            }  
+            case 2:  
+            {  
+                pop();  
+                break;  
+            }  
+            case 3:  
+            {  
+                show();  
+                break;  
+            }  
+            case 4:   
+            {  
+                printf("Exiting....");  
+                break;   
+            }  
+            default:  
+            {  
+                printf("Please Enter valid choice ");  
+            }   
+        };  
+    }  
+}   
+  
+void push ()  
+{  
+    int val;      
+    if (top == n )   
+    printf("\n Overflow\n");   
+    else   
+    {  
+        printf("Enter the value? ");  
+        scanf("%d",&val);         
+        top = top +1;   
+        stack[top] = val;   
+    }   
+}   
+  
+void pop ()   
+{   
+    if(top == -1)   
+    printf("Underflow\n");  
+    else
+    { 
+       printf("Popped %d ",stack[top]);
+       top = top -1; 
+       
+     }  
+     
+}   
+void show()  
+{  
+    printf("Stack:\n");
+    for (i=top;i>=0;i--)  
+    {  
+        printf("%d\n ",stack[i]);  
+    }  
+    if(top == -1)   
+    {  
+        printf("Stack is empty\n");  
+    }  
+} 
+
+<b>Output:</b> 
+Enter the number of elements in the stack 3
+
+*********Stack operations using array*********
+----------------------------------------------
+Choose one from the below options...
+
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+1
+Enter the value? 5
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+1
+Enter the value? 6
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+1
+Enter the value? 7
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+1
+Enter the value?8
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+1
+ Overflow
+ Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+ 3
+Stack:
+8 
+7 
+6 
+5
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+2
+Popped 8
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+2
+Popped 7
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+2
+Popped 6
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+ 2
+Popped 5
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+2
+Underflow
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+3
+Stack is empty
+Choose one from the below options...
+1.Push
+2.Pop
+3.Show
+4.Exit
+ Enter your choice 
+4
+Exiting....
+
+<b>Complexity:</b>
+push(), pop() all take O(1) time.
+
+       </pre>
+    </body>
+
+</html>

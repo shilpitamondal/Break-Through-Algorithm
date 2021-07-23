@@ -6,16 +6,12 @@
     <body class="framebody">
         <h1>Interpolation Search</h1>
         <pre>
-Given a sorted array of n uniformly distributed values arr[], write a function to 
-search for a particular element x in the array. 
-Linear Search finds the element in O(n) time, Jump Search takes O(√ n) time and 
-Binary Search take O(Log n) time. 
-The Interpolation Search is an improvement over Binary Search for instances, where 
-the values in a sorted array are uniformly distributed. Binary Search always goes 
-to the middle element to check. On the other hand, interpolation search may go to 
-different locations according to the value of the key being searched. For example, 
-if the value of the key is closer to the last element, interpolation search is likely 
-to start search toward the end side.
+<b>Working Principle:</b> Interpolation search is an improved version of binary search.
+This search algorithm works on the probing position of the required value. For this 
+algorithm to work properly, the data collection should be in a sorted form and uniformly
+distributed.
+For example, if the value of the key is closer to the last element, interpolation search
+is likely to start search toward the end side. 
 
 The formula for pos can be derived as follows.
 
@@ -37,15 +33,19 @@ lo + (x - arr[lo])/m = pos
 pos = lo + (x - arr[lo]) *(hi - lo)/(arr[hi] - arr[lo])
           
 <h3>Algorithm:</h3> 
-Rest of the Interpolation algorithm is the same except the above partition logic. 
+Let A[] be a array of n sorted and uniformly distributed elements (A[0],A[1]....,A[n-1])
+and x is the element being searched.
 Step1: In a loop, calculate the value of “pos” using the probe position formula. 
 Step2: If it is a match, return the index of the item, and exit. 
-Step3: If the item is less than arr[pos], calculate the probe position of the left sub-array. Otherwise calculate the same in the right sub-array. 
-Step4: Repeat until a match is found or the sub-array reduces to zero.Below is the implementation of algorithm. 
+Step3: If the item is less than arr[pos], calculate the probe position of the left sub-array. 
+Otherwise calculate the same in the right sub-array. 
+Step4: Repeat until a match is found or the sub-array reduces to zero. 
+
+<b>Dry Run:</b>
         </pre>
         <img src="images/interpolation.png">
         <pre>
-            <h3>Corresponding code</h3>
+<h3>Corresponding code:</h3>
                 
             // C program to implement interpolation search
             // with recursion
@@ -99,8 +99,18 @@ Step4: Repeat until a match is found or the sub-array reduces to zero.Below is t
                     printf("Element not found.");
                 return 0;
             }
-            Output
+<h3>Output:</h3>
             Element found at index 4
+
+<h3>Complexity:</h3>
+Best Case time complexity: When the given array is Uniformly distributed, then the 
+best case for this algorithm occurs which calculates the index of the search key 
+in one step only taking constant or O(1) time.
+
+Average Case time complexity : If the array is not fairly distributed but sorted 
+the average case occurs with runtime as O(log (log n))
+
+Worst Case time complexity : Where we need to traverse all the element of array is O(n)
             
             
        </pre>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	 <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="framebody">
+        <h1>Binary Search Tree</h1>
+<pre>
+Binary Search tree can be defined as a class of binary trees, in which the nodes 
+are arranged in a specific order. This is also called ordered binary tree. In a 
+binary search tree, the value of all the nodes in the left sub-tree is less than 
+the value of the root. Similarly, value of all the nodes in the right sub-tree is 
+greater than or equal to the value of the root. This rule will be recursively 
+applied to all the left and right sub-trees of the root.
+
+<img src="images/binary-search-tree.png">
+
+<b>Advantages of using binary search tree:</b>
+1.Searching become very efficient in a binary search tree since, we get a hint 
+at each step, about which sub-tree contains the desired element.
+2.The binary search tree is considered as efficient data structure in compare to 
+arrays and linked lists. In searching process, it removes half sub-tree at every 
+step. Searching for an element in a binary search tree takes o(log<sub>2</sub>n) time. In worst 
+case, the time it takes to search an element is 0(n).
+3.It also speed up the insertion and deletion operations as compare to that in 
+array and linked list.
+
+<b>Operations on Binary Search Tree:</b>
+1.Searching: Finding the location of some specific element in a binary search tree.
+2.Insertion: Adding a new element to the binary search tree at the appropriate location 
+so that the property of BST do not violate.
+3.Deletion: Deleting some specific node from a binary search tree. However, there can 
+be various cases in deletion depending upon the number of children, the node have.
+
+<b>Corresponding Code:</b>
+// Binary Search Tree operations in C
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+struct node {
+  int key;
+  struct node *left, *right;
+};
+
+// Create a node
+struct node *newNode(int item) {
+  struct node *temp = (struct node *)malloc(sizeof(struct node));
+  temp->key = item;
+  temp->left = temp->right = NULL;
+  return temp;
+}
+
+// Inorder Traversal
+void inorder(struct node *root) {
+  if (root != NULL) {
+    // Traverse left
+    inorder(root->left);
+
+    // Traverse root
+    printf("%d -> ", root->key);
+
+    // Traverse right
+    inorder(root->right);
+  }
+}
+
+// Insert a node
+struct node *insert(struct node *node, int key) {
+  // Return a new node if the tree is empty
+  if (node == NULL) return newNode(key);
+
+  // Traverse to the right place and insert the node
+  if (key < node->key)
+    node->left = insert(node->left, key);
+  else
+    node->right = insert(node->right, key);
+
+  return node;
+}
+
+// Find the inorder successor
+struct node *minValueNode(struct node *node) {
+  struct node *current = node;
+
+  // Find the leftmost leaf
+  while (current && current->left != NULL)
+    current = current->left;
+
+  return current;
+}
+
+// Deleting a node
+struct node *deleteNode(struct node *root, int key) {
+  // Return if the tree is empty
+  if (root == NULL) return root;
+
+  // Find the node to be deleted
+  if (key < root->key)
+    root->left = deleteNode(root->left, key);
+  else if (key > root->key)
+    root->right = deleteNode(root->right, key);
+
+  else {
+    // If the node is with only one child or no child
+    if (root->left == NULL) {
+      struct node *temp = root->right;
+      free(root);
+      return temp;
+    } else if (root->right == NULL) {
+      struct node *temp = root->left;
+      free(root);
+      return temp;
+    }
+
+    // If the node has two children
+    struct node *temp = minValueNode(root->right);
+
+    // Place the inorder successor in position of the node to be deleted
+    root->key = temp->key;
+
+    // Delete the inorder successor
+    root->right = deleteNode(root->right, temp->key);
+  }
+  return root;
+}
+
+// Driver code
+int main() {
+  struct node *root = NULL;
+  root = insert(root, 8);
+  root = insert(root, 3);
+  root = insert(root, 1);
+  root = insert(root, 6);
+  root = insert(root, 7);
+  root = insert(root, 10);
+  root = insert(root, 14);
+  root = insert(root, 4);
+
+  printf("Inorder traversal: ");
+  inorder(root);
+
+  printf("\nAfter deleting 10\n");
+  root = deleteNode(root, 10);
+  printf("Inorder traversal: ");
+  inorder(root);
+}
+
+<b>Output:</b>
+Inorder traversal: 1 -> 3 -> 4 -> 6 -> 7 -> 8 -> 10 -> 14 -> 
+After deleting 10
+Inorder traversal: 1 -> 3 -> 4 -> 6 -> 7 -> 8 -> 14 -> 
+
+<b>Complexity:</b>
+Time Complexity
+Operation	Best Case Complexity   Average Case Complexity	Worst Case Complexity
+Search	        O(log n)	            O(log n)	          O(n)
+Insertion	O(log n)	            O(log n)	          O(n)
+Deletion	O(log n)	            O(log n)	          O(n)
+
+Space Complexity
+The space complexity for all the operations is O(n).
+
+</pre>
+</body>
+
+</html>

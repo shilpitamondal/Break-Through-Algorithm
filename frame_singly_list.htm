@@ -1,48 +1,79 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+         <link rel="stylesheet" href="style.css">
     </head>
-    <body>
+    <body class="framebody">
         <h1>Singly Linked List</h1>
         <pre>
-            It is the most common. Each node has data and a pointer to the next node.
+It is the most common. Each node has data and a pointer to the next node.
 
-            <h3>Node is represented as:</h3>
-             struct node {
-                int data;
-                struct node *next;
-            }
+             head   
+             |
+             |
+        +---+---+     +---+---+       +----+------+
+        | 1  | o----->|  2  | o-----> |  3 | NULL |
+        +---+---+     +---+---+       +----+------+     
+
+<h3>Node is represented as:</h3>
+struct node {
+    int data;
+    struct node *next;
+ }
         </pre>
-        <img src="images/single_linked-list.png">
+        <img src="images/single_linked-list.png" width=70%>
         <pre>
-            <h3>Corresponding code</h3>
-           
-A three-member singly linked list can be created as:
+            <h3>Corresponding code:</h3>
+// A simple C program for traversal of a linked list
+#include <stdio.h>
+#include <stdlib.h>
+ 
+struct Node {
+    int data;
+    struct Node* next;
+};
+ 
+// This function prints contents of linked list starting from
+// the given node
+void printList(struct Node* n)
+{
+    while (n != NULL) {
+        printf(" %d ", n->data);
+        n = n->next;
+    }
+}
+ 
+int main()
+{
+    struct Node* head = NULL;
+    struct Node* second = NULL;
+    struct Node* third = NULL;
+ 
+    // allocate 3 nodes in the heap
+    head = (struct Node*)malloc(sizeof(struct Node));
+    second = (struct Node*)malloc(sizeof(struct Node));
+    third = (struct Node*)malloc(sizeof(struct Node));
+ 
+    head->data = 1; // assign data in first node
+    head->next = second; // Link first node with second
+ 
+    second->data = 2; // assign data to second node
+    second->next = third;
+ 
+    third->data = 3; // assign data to third node
+    third->next = NULL;
+ 
+    printList(head);
+ 
+    return 0;
+}
 
-/* Initialize nodes */
-struct node *head;
-struct node *one = NULL;
-struct node *two = NULL;
-struct node *three = NULL;
+<b>Output:</b>
+ 1  2  3
 
-/* Allocate memory */
-one = malloc(sizeof(struct node));
-two = malloc(sizeof(struct node));
-three = malloc(sizeof(struct node));
+ 
 
-/* Assign data values */
-one->data = 1;
-two->data = 2;
-three->data = 3;
 
-/* Connect nodes */
-one->next = two;
-two->next = three;
-three->next = NULL;
-
-/* Save address of first node in head */
-head = one;           
        </pre>
     </body>
 

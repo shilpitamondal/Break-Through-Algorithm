@@ -6,11 +6,22 @@
     <body class="framebody">
         <h1>Linear Search</h1>
         <pre>
+<b>Working Principle:</b> Linear search (or sequential search) is a method for finding an 
+element within a list. It sequentially checks each element of the list until that 
+element being searched is found or the whole list has been searched.
+
 A simple approach is to do a linear search, i.e  
 
 -Start from the leftmost element of arr[] and one by one compare x with each element of arr[]
 -If x matches with an element, return the index.
 -If x doesn’t match with any of elements, return -1.
+
+<b>Algorithm:</b>
+Let A[] be a array of n elements (A[0],A[1]....,A[n-1]) and x is the element being searched.
+1.Set i to 0.
+2.If A[i] = x, go to step 4.
+3.Increase i by 1 and go to step 2.
+4.f i < n, the search terminates successfully; return i. Else, the search terminates unsuccessfully
 
 Examples :  
 
@@ -24,9 +35,10 @@ x = 175;
 Output : -1
 Element x is not present in arr[].
         </pre>
+        <h3>Dry Run</h3>
         <img src="images/Linear-Search.png">
         <pre>
-            <h3>Corresponding code</h3>
+            <h3>Corresponding code:</h3>
             //this program linearly search the element "int x" from arr[]
 
             #include &lt;stdio.h&gt;
@@ -58,21 +70,16 @@ Element x is not present in arr[].
                 return 0;
             }
 
-            <h3>Output:-</h3>
+            <h3>Output:</h3>
 
             Element is present at index 3
 
-            <h3>complexity:-</h3>
-            The time complexity of the above algorithm is O(n). 
+            <h3>Complexity:</h3>
+Worst-case time complexity(when the element is at the last index or not present in that array)-  O(n)
+Best-case time complexity(when the element is at first index)-   O(1)
+Average time complexity -  O(n) [1*(1/n)+2*(1/n)+..+n*(1/n)]=[(n+1)/2]
 
-            Linear search is rarely used practically because other search algorithms such as the
-            binary search algorithm and hash tables allow significantly faster-searching comparison
-            to Linear search.
-
-            Improve Linear Search Worst-Case Complexity
-
-            if element Found at last  O(n) to O(1)
-            if element Not found O(n) to O(n/2)
+Worst-case space complexity- O(1) 
        </pre>
     </body>
 

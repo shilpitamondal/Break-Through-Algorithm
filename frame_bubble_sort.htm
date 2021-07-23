@@ -6,10 +6,11 @@
     <body class="framebody">
         <h1>Bubble sort</h1>
         <pre>
-Bubble Sort is the simplest sorting algorithm that works by repeatedly swapping 
-the adjacent elements if they are in wrong order.
+<b>Working Principle:</b>Bubble Sort algorithm works by repeatedly swapping the adjacent 
+elements if they are in wrong order.The pass through the list is repeated until the 
+list is sorted.
 
-Example:
+<b>Example:</b>
 First Pass:
 ( 5 1 4 2 8 ) –> ( 1 5 4 2 8 ), Here, algorithm compares the first two elements, 
                                 and swaps since 5 > 1.
@@ -32,11 +33,21 @@ Third Pass:
 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 )
 ( 1 2 4 5 8 ) –> ( 1 2 4 5 8 )
 
+<b>Algorithm:</b>
+1.Starting with the first element(index = 0), compare the current element with the 
+  next element of the array.
+2.If the current element is greater than the next element of the array, swap them.
+3.If the current element is less than the next element, move to the next element. 
+  Repeat Step 1.
+4.Iterate step 1 , 2 and 3 till the array is sorted.
 
+
+<b>Dry Run:</b>
+<img src="images/bubble-shrt.png">
         </pre>
         
         <pre>
-            <h3>Corresponding code</h3>
+<h3>Corresponding code:</h3>
                 
             // C program for implementation of Bubble sort
             #include &lt;stdio.h&gt;
@@ -79,19 +90,18 @@ Third Pass:
                 printArray(arr, n);
                 return 0;
             }
-            <h3>Output:-</h3>
+<h3>Output:</h3>
 
             Sorted array:
             11 12 22 25 34 64 90
 
-            <h3>complexity:-</h3>
-            Worst and Average Case Time Complexity: O(n*n). 
-            Worst case occurs when array is reverse sorted.
+<h3>Complexity:</h3>
+Worst-case time complexity  - O(n<sup>2</sup>) 
+Best-case time complexity  -  O(n) 
+Average-case time complexity - O(n<sup>2</sup>) 
 
-            Best Case Time Complexity: O(n). Best case occurs when array is already sorted.
-            Worst and Average Case Time Complexity: O(n*n). Worst case occurs when array is 
-            reverse sorted.
-
+Space complexity - O(1) 
+           
        </pre>
     </body>
 

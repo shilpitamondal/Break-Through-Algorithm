@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <link rel="stylesheet" href="style.css">
+    </head>
+    <body class="framebody">
+        <h1>Quick Sort</h1>
+        <pre>
+
+<b>Working Principle:</b>Quicksort is a divide-and-conquer algorithm. It works by selecting a 'pivot' element from the array and partitioning the other elements into two sub-arrays, according to whether they are less than or greater than the pivot. The sub-arrays are then sorted recursively. An element at the point of division that is at this point known to be already in its final location. 
+There are many different versions of quickSort that pick pivot in different ways. 
+1.Always pick first element as pivot.
+2.Always pick last element as pivot (implemented below)
+3.Pick a random element as pivot.
+4.Pick median as pivot.
+
+
+
+<b>Algorithm:</b>
+Quick Sort Pivot Algorithm:
+Step 1 − Choose the highest index value has pivot
+Step 2 − Take two variables to point left and right of the list excluding pivot
+Step 3 − left points to the low index
+Step 4 − right points to the high
+Step 5 − while value at left is less than pivot move right
+Step 6 − while value at right is greater than pivot move left
+Step 7 − if both step 5 and step 6 does not match swap left and right
+Step 8 − if left ≥ right, the point where they met is new pivot
+
+Quick Sort Algorithm:
+Step 1 − Make the right-most index value pivot
+Step 2 − partition the array using pivot value
+Step 3 − quicksort left partition recursively
+Step 4 − quicksort right partition recursively
+
+<b>Dry Run:</b>
+<img src="images/quicksort.jpg" >
+
+<h3>Corresponding Code:</h3>
+
+#include &lt;stdio.h&gt;
+
+// to swap two numbers
+void swap(int* a, int* b)
+{
+    int t = *a;
+    *a = *b;
+    *b = t;
+}
+
+int partition (int arr[], int low, int high)
+{
+    int pivot = arr[high];  // selecting last element as pivot
+    int i = (low - 1);  // index of smaller element
+ 
+    for (int j = low; j <= high- 1; j++)
+    {
+        // If the current element is smaller than or equal to pivot
+        if (arr[j] <= pivot)
+        {
+            i++;    // increment index of smaller element
+            swap(&arr[i], &arr[j]);
+        }
+    }
+    swap(&arr[i + 1], &arr[high]);
+    return (i + 1);
+}
+/*  
+    a[] is the array, p is starting index, that is 0, 
+    and r is the last index of array.  
+*/
+void quicksort(int a[], int p, int r)    
+{
+    if(p < r)
+    {
+        int q;
+        q = partition(a, p, r);
+        quicksort(a, p, q-1);
+        quicksort(a, q+1, r);
+    }
+}
+
+
+// function to print the array
+void printArray(int a[], int size)
+{
+    int i;
+    for (i=0; i < size; i++)
+    {
+        printf("%d ", a[i]);
+    }
+    printf("\n");
+}
+
+int main()
+{
+    int arr[] = {9, 7, 5, 11, 12, 2, 14, 3, 10, 6};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    
+    // call quickSort function
+    quicksort(arr, 0, n-1);
+    
+    printf("Sorted array: \n");
+    printArray(arr, n);
+    return 0;
+}
+<h3>Output: </h3>
+Sorted array: 
+2 3 5 6 7 9 10 11 12 14
+
+<h3>Complexity:</h3>
+Worst-case time complexity -  O(n<sup>2</sup>)
+If the pivot happens to be the smallest or largest element in the list.Then repeatedly
+in every partition, then each recursive call processes a list of size one less than the 
+previous list. Consequently, we can make n − 1 nested calls before we reach a list of 
+size 1. This means that the call tree is a linear chain of n − 1 nested calls.
+Then recurrence relation is T(n)= T(n-1) + C<sub>n</sub> when n>1
+                                   1         when n=1
+
+Best-case time complexity -  O(n log n)
+In the most balanced case, each time we perform a partition we divide the list into two 
+nearly equal pieces.This means each recursive call processes a list of half the size. 
+Consequently, we can make only log2 n nested calls before we reach a list of size 1. 
+Then recurrence relation is T(n)= T(n/2) + C<sub>n</sub> when n>1
+                                   1         when n=1
+
+Average-case time complexity - O(n log n)
+
+Space complexity - O(n)
+</pre>
+    </body>
+</html>

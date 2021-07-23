@@ -6,29 +6,29 @@
     <body class="framebody">
         <h1>Merge Sort</h1>
         <pre>
-Like QuickSort, Merge Sort is a Divide and Conquer algorithm. 
-It divides the input array into two halves, calls itself for the two halves, 
-and then merges the two sorted halves. The merge() function is used for 
-merging two halves. The merge(arr, l, m, r) is a key process that assumes 
-that arr[l..m] and arr[m+1..r] are sorted and merges the two sorted sub-arrays 
-into one. See the following
-               
-C implementation for details.
 
+<b>Working Principle:</b> Merge sort is a divide and conquer algorithm. It first divide the 
+unsorted list into n sublists, each containing one element (a list of one element is 
+considered sorted). Then repeatedly merge sublists to produce new sorted sublists until 
+there is only one sublist remaining. This will be the sorted list.
+
+<b>Algorithm:</b>
 MergeSort(arr[], l,  r)
 If r > l
 1. Find the middle point to divide the array into two halves:  
-   middle m = l+ (r-l)/2
+        middle m = l+ (r-l)/2
 2. Call mergeSort for first half:   
-    Call mergeSort(arr, l, m)
+        Call mergeSort(arr, l, m)
 3. Call mergeSort for second half:
-    Call mergeSort(arr, m+1, r)
+        Call mergeSort(arr, m+1, r)
 4. Merge the two halves sorted in step 2 and 3:
-    Call merge(arr, l, m, r)  
+        Call merge(arr, l, m, r)
+
+<b>Dry Run:</b>
         </pre>
-        <img src="images/Merge-Sort.png">
+        <img src="images/mergesort.png">
         <pre>
-            <h3>Corresponding code</h3>
+<h3>Corresponding code:</h3>
             /* C program for Merge Sort */
             #include &lt;stdio.h&gt;
             #include &lt;stdlib.h&ht;
@@ -126,16 +126,25 @@ If r > l
                 printArray(arr, arr_size);
                 return 0;
             }
-            <h3>Output:-</h3>
+<h3>Output:</h3>
 
             Given array is 
             12 11 13 5 6 7 
             Sorted array is 
             5 6 7 11 12 13
-            <h3>complexity:-</h3>
-Merge Sort is a recursive algorithm and time complexity can be expressed as following 
-recurrence relation. 
-            T(n) = 2T(n/2) + θ(n)
+<h3>Complexity:</h3>
+If the running time of Merge sort for a list of length n is T(n), 
+then the recurrence relation is T(n) = 2T(n/2) + n when n>1
+                                        1          when n=1 
+
+
+Worst-case performance - O(n log n)
+Best-case performance - O(n log n)
+Average-case performance - O(n log n)
+
+Space complexity - O(n)
+An extra memory space is required, by the intermediate array of size n , 
+by the funtion Merge to concatenate two sorted arrays.
        </pre>
     </body>
 
