@@ -1,64 +1,68 @@
 /* Style the navbar */
 #navbar {
-    overflow: hidden;
-    background-color: #333;
-  }
-  
-  /* Navbar links */
-  #navbar a {
-    float: right;
-    display: block;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px;
-    font-size:larger;
-    text-decoration: none;
-  }
+  overflow: hidden;
+  background-color: #333;
+}
 
-  #weblogo {
-      width:100px;
-      height:60px;
-      padding: 4px;
-      margin-top: 2px;
-  }
+/* Navbar links */
+#navbar a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px;
+  font-size:larger;
+  text-decoration: none;
+}
+
+#weblogo {
+    width:100px;
+    height:60px;
+    padding: 4px;
+    margin-top: 2px;
+}
 
 #webnamelogo{
-    font-family: cursive;
-    font-size:50px;
-    padding: 4px;
-    
+  font-family: cursive;
+  font-size:50px;
+  padding: 4px;
+  
 }
 
 .row{
-  margin: 10px;
+margin: 10px;
 }
 
 
 .col-sm-2{
-  background-color: rgb(204, 228, 243,0.2);
-  font-size:120% ;
-  border: solid;
-  border-color: rgb(85, 31, 100);
-  border-radius: 10px;
-  border-width: 5px;
-  overflow-y: scroll;
-  margin: 10px;
-    
+background-color: rgb(204, 228, 243,0.2);
+font-size:120% ;
+border: solid;
+border-color: rgb(85, 31, 100);
+border-radius: 10px;
+border-width: 5px;
+overflow-y: scroll;
+margin: 10px;
+  
 }
 
 pre{
-  font-size: 18px !important;
+font-size: 18px !important;
 }
 .col-sm-9{
-  /* s */
-  margin: 10px;
-  font-size: large;
-  /* height: px;
-  width: px; */
-  
-  }
+/* s */
+margin: 10px;
+font-size: large;
+/* height: px;
+width: px; */
+
+}
 
 
-  .framebody{
-    background-color: rgba(225, 230, 208, 0.7);
-  }
+.framebody{
+  background-color: rgba(225, 230, 208, 0.7);
+}
+
+.row.container, body{
+  background: whitesmoke;
+}
