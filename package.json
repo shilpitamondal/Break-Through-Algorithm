@@ -1,0 +1,28 @@
+{
+  "name": "breakthroughalgorithm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "helper.js",
+  "dependencies": {
+    "alert": "^5.0.10",
+    "connect": "^3.7.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shilpitamondal/Break-Through-Algorithm.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shilpitamondal/Break-Through-Algorithm/issues"
+  },
+  "homepage": "https://github.com/shilpitamondal/Break-Through-Algorithm#readme"
+}
