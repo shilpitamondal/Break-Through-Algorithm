@@ -2199,7 +2199,7 @@ body {
   margin: 30px;
   padding: 30px;
 }
- 
+
 .card{
   padding: 10px;
   color: black;
@@ -2208,4 +2208,44 @@ body {
   border-width: 2px;
   border-color: rgb(14, 23, 53);
   height: 700px;
+} 
+
+.row.container, body{
+  background: whitesmoke;
 }
+
+table[id^="table-"] {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+ caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+  display: table-caption;
+  text-align: center;
+  caption-side: top;
+}
+
+table[id^="table-"] tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table[id^="table-"] th,
+table[id^="table-"] td {
+  padding: .625em;
+  text-align: center;
+}
+
+table[id^="table-"] th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
